@@ -15,3 +15,6 @@ if __name__ == "__main__":
     print(instance2)
     print(instance is instance2)
 
+# But This is code is Not Thread safe , as if multiple thread try to create at the same time
+#     let s1 = Singleton()   s2 = Singleton()
+# it will create the issue
