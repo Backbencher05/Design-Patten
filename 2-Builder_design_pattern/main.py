@@ -1,0 +1,22 @@
+from GamingComputerBuilder import GamingComputerBuilder
+from HomeComputerBuilder import HomeComputerBuilder
+from ComputerDirector import ComputerDirector
+
+
+if __name__ == '__main__':
+    """
+        I want gaming Computer, let's create builder for that, 
+    shall i call build() method directly from here ?
+    No,I will
+     assign a dirctor to build the computer 
+    """
+# I want gaming Computer
+    # gb = GamingComputerBuilder()
+    hb = HomeComputerBuilder()#let i need Home computer 
+    # requirement go to director 
+    director = ComputerDirector(hb)
+    # director tell the builder to construct 
+    director.construct()
+    # after construction done get the computer and give to the user
+    c = director.get_computer()
+    print(c)
