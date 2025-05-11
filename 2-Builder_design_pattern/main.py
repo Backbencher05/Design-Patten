@@ -13,7 +13,8 @@ if __name__ == '__main__':
 # I want gaming Computer
     # gb = GamingComputerBuilder()
     hb = HomeComputerBuilder()#let i need Home computer 
-    # requirement go to director 
+    # requirement go to director , we will pass our requirement by passing values in the arguments
+    # right now we are passing directly 
     director = ComputerDirector(hb)
     # director tell the builder to construct 
     director.construct()
