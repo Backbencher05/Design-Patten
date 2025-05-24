@@ -11,11 +11,16 @@ if __name__ == '__main__':
      assign a dirctor to build the computer 
     """
 # I want gaming Computer
-    # gb = GamingComputerBuilder()
-    hb = HomeComputerBuilder()#let i need Home computer 
+    gb = GamingComputerBuilder()
+    """
+    shall i call build() method directly from here present inside GamingComputerBuilder class ?
+    No,
+    I will assign a dirctor to build the computer 
+    """
+    # hb = HomeComputerBuilder()#let i need Home computer 
     # requirement go to director , we will pass our requirement by passing values in the arguments
     # right now we are passing directly 
-    director = ComputerDirector(hb)
+    director = ComputerDirector(gb)
     # director tell the builder to construct 
     director.construct()
     # after construction done get the computer and give to the user

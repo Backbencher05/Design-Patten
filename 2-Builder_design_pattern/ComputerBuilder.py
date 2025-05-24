@@ -8,8 +8,16 @@ depending on the requirement from the builder(have requirement from the user/mai
 we will build that type of computer 
 
 so, 
-    let make this Computer builder as "abstract class" becuase depending on the requirement we need to build the computer 
+    let make this Computer builder as "abstract class" becuase we have different types of computer,
+    depending on the requirement we need to build the computer 
 and diffent type of computers are responsible for implimentation i.e child class
+
+so we have:
+    parentClass(abstract class): ComputerBuilder
+    child class(have implimenttion): 
+            - Gaming Computer builder
+            - office computer Builder
+            - home Computer
     """
 
 from abc import ABC, abstractmethod

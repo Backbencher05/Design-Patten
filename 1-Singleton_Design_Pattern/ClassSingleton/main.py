@@ -2,6 +2,13 @@
                             # first call of __new__, it will create the object and assign it to the __instance variable
                             #  and return the instance
 
+"""
+Q:2 - why __instace is private
+    we kept it private because let instance2 created and it done again __instance=None
+    new object will create again
+    as private is assessbale within the class only
+"""
+
 class Singleton:
     __instance = None #private: initially when we create class we don't have any object of this class
     def __new__(cls, *args, **kwargs): # we are over riding __new__() method, as this __new__() already present in parent class i.e "object" class

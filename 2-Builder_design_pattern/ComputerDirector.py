@@ -10,13 +10,13 @@ class ComputerDirector:
 
     so, we have to bound it with computerBuilder not the specific type of computer 
     Now,
-      director will the to computer builder to build the computer
+      director will tell the to computer builder to build the computer
     """
-    def __init__(self, ComputerBuilder):
+    def __init__(self, ComputerBuilder): #director will tell the to computer builder to build the computer
         self.ComputerBuilder = ComputerBuilder
 
     def construct(self):
-        # set the value as per user pass in the parameter let use here dirctly 
+        # this method set the value as per user pass in the parameter let use here dirctly 
         self.ComputerBuilder.set_cpu(1)
         self.ComputerBuilder.set_ram(2)
         # self.ComputerBuilder.set_gpu(2)
