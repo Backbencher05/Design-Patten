@@ -6,9 +6,10 @@ def get_player(player_val):
         return KnightFactory().create_player().attack()
     
 # let in future player knight have version2 we don't have to care
-# client don't knw which object is coming or latest code as code (loosly coupled)
+# client don't know which object is coming or latest code as code (loosly coupled)
 # same as we have seen the app, home page/UI changed completely 
 
+# Now here,
 # we have solved to problem of version updation, 
 # we have to solve OCP and SRP principle 
 """
