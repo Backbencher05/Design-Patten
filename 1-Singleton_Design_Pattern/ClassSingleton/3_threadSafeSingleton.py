@@ -6,7 +6,7 @@ class Singleton:
     # we have to use mutex(acting as lock), that only one thread can access a resource at a time
 
     def __new__(cls, *args, **kwargs):
-        with cls.__lock: # using with lock, lock automatically release the lock one the indentation/code execute i.e before return
+        with cls.__lock: # using "with lock", lock automatically release the lock one the indentation/code execute i.e before return
             if cls.__instance is None: #  # as lock condition will slow down out process, 
                 cls.__instance = super(Singleton,cls).__new__(cls)
         # with lock: statement is used to acquire and release a lock automatically, ensuring tht only one thread 

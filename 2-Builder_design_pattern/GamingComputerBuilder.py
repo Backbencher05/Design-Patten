@@ -29,7 +29,7 @@ class GamingComputerBuilder(ComputerBuilder):  # is a child class of computer bu
         self.gpu = gpu
 
     def set_power_supply(self, power_supply):
-        self.set_power_supply = power_supply
+        self.power_supply = power_supply
 
     def set_storage(self, storage):
         self.storage = storage

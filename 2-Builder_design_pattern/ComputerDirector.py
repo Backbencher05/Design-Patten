@@ -1,17 +1,19 @@
-class ComputerDirector:
-    """
-    Director will talk to Builder, depending on the requirement
-    let user want gaming computer
-    than director will connect to GamingComputer Builder
-    but,
-     if we directly bound director to GamingComputerbuilder 
-      it is tighly coupled as we have other typer of computer as well
-    it voitets/ breaks dependdency Inversion Principle (DI)
 
-    so, we have to bound it with computerBuilder not the specific type of computer 
-    Now,
-      director will tell the to computer builder to build the computer
-    """
+"""
+Director will take the input from main_file(user) then
+Director will talk to Builder, depending on the requirement
+let user want gaming computer
+than director will connect to GamingComputer Builder
+but,
+  if we directly bound director to GamingComputerbuilder 
+  it is tighly coupled as we have other typer of computer as well
+it voitets/ breaks dependdency Inversion Principle (DI)
+
+so, we have to bound it with computerBuilder not the specific type of computer 
+Now,
+  director will tell the to computer builder to build the computer
+"""
+class ComputerDirector:
     def __init__(self, ComputerBuilder): #director will tell the to computer builder to build the computer
         self.ComputerBuilder = ComputerBuilder
 
