@@ -1,0 +1,202 @@
+i have one question
+normally when we do the singleton we use
+__new__() class method but here we haven't used
+
+
+Great question — and this is an important distinction to understand deeply.
+Yes, Python singletons can be implemented with __new__(), but we intentionally did not use it here.
+Let’s break this down clearly so you understand when, why, and why not to use __new__() for Singletons.
+
+✅ 1. How Singleton using __new__() normally looks
+
+A classic Python singleton:
+
+class Singleton:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+
+Every constructor call returns the same object.
+
+❓ So why didn’t we use __new__() in your configuration manager?
+
+Because…
+
+⭐ Reason 1 — Your assignment explicitly required:
+Implement get_instance() and reset_instance()
+
+
+This means:
+
+The professor / LLD requirement wants explicit control of instance creation.
+
+The singleton must be accessed through get_instance().
+
+And must be resettable through reset_instance().
+
+If we used __new__() singleton rules:
+
+obj1 = FileBasedConfigurationManagerImpl()
+obj2 = FileBasedConfigurationManagerImpl()
+
+
+Both would refer to same object even if students were not supposed to call constructor.
+
+Your assignment wants to force developers to use:
+
+manager = FileBasedConfigurationManagerImpl.get_instance()
+
+
+So constructor approach (using new) becomes undesirable.
+
+⭐ Reason 2 — With __new__(), we cannot easily control reset
+
+If Singleton is implemented in __new__():
+
+How do you reset it back to None?
+
+You must modify the class state, but resetting becomes awkward:
+
+Singleton._instance = None
+
+
+This is less clean than calling:
+
+reset_instance()
+
+
+Your assignment requires explicit lifecycle control.
+
+⭐ Reason 3 — Thread-safety becomes harder in __new__()
+
+Consider this classic issue:
+
+Two threads call:
+
+Singleton()
+
+
+at the same time.
+
+If we only check inside __new__() without locks:
+
+You can accidentally create two objects.
+
+Using locks inside __new__() is possible but messier, because:
+
+__new__() is called before __init__().
+
+You must guard instance creation globally.
+
+Thread-safety would be mixed into object-creation code → less readable.
+
+Whereas:
+
+@staticmethod
+def get_instance():
+    # clean double-checked locking
+
+
+is clear, centralized, and expected.
+
+⭐ Reason 4 — In testing, __new__() singletons cause issues
+
+Imagine unit tests:
+
+manager1 = FileBasedConfigurationManagerImpl.get_instance()
+...
+FileBasedConfigurationManagerImpl.reset_instance()
+manager2 = FileBasedConfigurationManagerImpl.get_instance()
+
+
+Expected = new fresh instance.
+
+But if Singleton is implemented inside __new__():
+
+Someone can call the constructor again and bypass your test isolation.
+
+Reset becomes difficult.
+
+Explicit lifecycle methods are much cleaner for tests.
+
+⭐ Reason 5 — Your abstract class defines get_instance() and reset_instance() placeholders
+
+This is a strong hint that the intended design is:
+
+Singleton logic must be implemented at class-level through static methods.
+
+NOT hidden inside constructor or __new__().
+
+If the instructor wanted __new__(), they would have put this in abstract class:
+
+def __new__(cls): ...
+
+
+But they didn’t.
+
+So the design intentionally pushes toward:
+
+get_instance()
+reset_instance()
+
+⭐ Reason 6 — Clarity and explicitness
+
+__new__() Singletons are "magic" — meaning:
+
+Developers must know Python’s object model deeply.
+
+They may not notice the class is a Singleton.
+
+It hides logic inside special methods.
+
+By contrast:
+
+FileBasedConfigurationManagerImpl.get_instance()
+
+
+is easy to read, easy to use, easy to mock, easy to teach.
+
+This is exactly what LLD assignments want.
+
+⭐ Reason 7 — In LLD interviews and design exercises, Singleton is expected via factory method
+
+When designing system components, interviewers expect this pattern:
+
+SingletonClass.get_instance()
+
+
+NOT:
+
+x = SingletonClass()
+# magically returns same instance
+
+
+So using __new__() is less standard in LLD-heavy environments.
+
+🧠 Summary — Why no __new__()?
+Reason	Explanation
+✔ Assignment requirement	Must implement get_instance() and reset_instance()
+✔ Explicit control	Clear creation API, not magic
+✔ Clean thread-safety	Locks easier outside __new__()
+✔ Easier unit testing	Resetting singleton fully supported
+✔ More readable	LLD interview-level clarity
+✔ Avoids misuse	Developers won't accidentally bypass singleton behavior
+🏁 Final conclusion
+
+Using __new__() is valid but not appropriate for this assignment.
+
+The assignment’s API design + testability + clarity all point to a static factory-based singleton instead.
+
+If you want, I can now also show:
+
+A version using __new__() just to compare
+
+A diagram showing the call flow for both approaches
+
+Pros/cons in real-world system design
+
+Just tell me what you want next.
