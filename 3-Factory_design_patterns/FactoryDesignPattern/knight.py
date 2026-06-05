@@ -1,3 +1,5 @@
+# Implimention of player Archer the way he attack 
+
 from player import Player
 
 class Knight(Player):

@@ -1,9 +1,11 @@
 # __new__() method 
-            # will trigger before __init__, 
-            # as write now it's None at very
-            # first call of __new__, it will create the object and assign it to the __instance variable
-            #  and return the instance
 
+"""
+            will trigger before __init__, as write now it's None at very
+            first call of __new__, it will create the object and assign it to the __instance variable
+            and return the instance
+            """
+        
 """
 Q:2 - why __instace is private
     we kept it private because let instance2 created and it done again __instance=None
@@ -13,9 +15,11 @@ Q:2 - why __instace is private
 
 class Singleton:
     __instance = None #private: initially when we create class we don't have any object of this class
-    def __new__(cls, *args, **kwargs): # we are over_riding __new__() method, as this __new__() already present in parent class i.e "object" class
+    def __new__(cls, *args, **kwargs): # we are over-riding  __new__() method, as this __new__() already present in parent class i.e "object" class
         if cls.__instance is None: # i.e no object , means we have to create object
             cls.__instance = super(Singleton,cls).__new__(cls) # we are calling parent class method and over riding it so we are using super keyword (__new__() method present parent class i.e in object class)
+                        # OR 
+            # cls._instance = super().__new__(cls)
         return cls.__instance
 """
 what this line is doing ?
@@ -24,7 +28,7 @@ cls.__instance = super(Singleton,cls).__new__(cls)
 
 - super(Singleton,cls).__new__(cls) 
          it will call actual/default implimentation of __new__() method present in object class(parent class)
-    - generally when we call super method we pass "instance", but as __new__() is a class method,
+- generally when we call super method we pass "instance", but as __new__() is a class method,
         so here we are calling class method , we don't have any instance that's why we are passing "class" i.e
         i.e Singleton to super method by specifying with (,) that it is a class and call __new__() method of parent class (.__new__(cls)) , this is singleton class    
 
@@ -32,6 +36,8 @@ looks like,
 when we call super method normally we do and caliing __init__() method
     - super().__init__()
 here also we are doing same thing and calling __new__() method
+    - cls._instance = super().__new__(cls)
+                OR
     - super(Singleton, cls).__new__(cls) #as __new__ is a class method
 """
 

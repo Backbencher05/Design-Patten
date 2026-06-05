@@ -19,7 +19,10 @@ and while calling Archer player they have to call create() method
 it will create the confusion...
 so they should be contract for that we have to use "Abstract Class"
 
-- create PlayerFactory as abstract class, ensure to  have same method only let create player 
+- create PlayerFactory as abstract class, ensure to  have same method only let "create player"/ "call_player"
+Note: - we can also create on new file as well 
+        - in one file PlayerFactory as Abstract class 
+        - in another file PlayerFactory class Implimentation in child class 
 """
 
 

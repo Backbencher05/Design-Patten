@@ -1,4 +1,4 @@
-# Director call the builder 
+# Director(sales Person) call the builder to build the computer based on it's requirement
 """
 here we are building different types of computer like we have
     - Gaming Computer 

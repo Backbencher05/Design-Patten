@@ -1,4 +1,4 @@
-from Factory.AbstractFactory import AbstractAndroidFactory, AbstractIosFactory
+# from Factory.AbstractFactory import AbstractAndroidFactory, AbstractIosFactory
 from Factory.OSFactory import OSFactory
 
 def Deploy(val):
@@ -10,13 +10,7 @@ def Deploy(val):
 
 # we have solved to problem of version updation, 
 # we have to solve OCP and SRP principle 
-"""
-Note:
-but if are importing dirctly factories hare we have to change at multiple places
-- importing dirctly factories here
-- lot of changes
-- lot of if else are there
-"""
+
 
 
 if __name__ == '__main__':
