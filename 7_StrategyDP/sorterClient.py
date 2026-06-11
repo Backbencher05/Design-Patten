@@ -1,9 +1,10 @@
 # some client will use it to sort the data 
-
 # and this sorter class (client) will we class by our main method / class
-from SortingAlgo.BubbleSort import BubbleSort
-from SortingAlgo.QuickSort import QuickSort
-from SortingAlgo.MergeSort import MergeSort
+
+
+# from SortingAlgo.BubbleSort import BubbleSort
+# from SortingAlgo.QuickSort import QuickSort
+# from SortingAlgo.MergeSort import MergeSort
 
 # class Sorter:
 
